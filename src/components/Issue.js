@@ -196,7 +196,7 @@ class Issue extends Component {
             <br />
             <br />
             <h1 style={{ color: "white" }}>
-              <strong>dVault</strong>
+              <strong>BlockProof</strong>
             </h1>
 
             <br />

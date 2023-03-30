@@ -8,6 +8,7 @@ import Home from "./Home";
 import Issue from "./Issue";
 import Certificate from "./Certificate";
 import Navbar from "./Navbar";
+import Login from "./Login";
 
 class App extends Component {
   async componentWillMount() {
@@ -136,7 +137,7 @@ class App extends Component {
           <Navbar />
           <Route
             exact
-            path="/"
+            path="/main"
             render={(props) => (
               <React.Fragment>
                 {this.state.loading ? (
@@ -195,6 +196,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
+          <Route exact path="/" render={() => <Login />} />
         </Router>
       </div>
     );

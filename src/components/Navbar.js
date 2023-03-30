@@ -35,10 +35,15 @@ export default function ButtonAppBar() {
           <IconButton
             edge="start"
             className={classes.menuButton}
-            color="#FGR"
+            color="purple"
             aria-label="menu"
           >
-            <MenuIcon />
+            <i
+              class="fa-sharp fa-solid fa-link"
+              style={{ color: "purple", backgroundColor: "purple" }}
+            >
+              {" "}
+            </i>
           </IconButton>
           <Typography variant="h5" className={classes.title}>
             <Link to="/">
