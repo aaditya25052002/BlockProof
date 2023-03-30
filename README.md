@@ -1,4 +1,4 @@
-# dVault
+<!-- # dVault
 A Blockchain-based system to issue and validate digital academic certificates.
 
 ![logo](/src/logo.png?raw=true)
@@ -57,4 +57,4 @@ $ npm start
 ```
 
 - Visit localhost:3000 and connect your Celo extension wallet account.
-- Enjoy the dVault experience!
+- Enjoy the dVault experience! -->
