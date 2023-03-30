@@ -1,16 +1,24 @@
-require('babel-register');
-require('babel-polyfill');
-const fs = require('fs');
+// require('babel-register');
+// require('babel-polyfill');
+// const fs = require('fs');
 
-const Kit = require('@celo/contractkit')
-const kit = Kit.newKit('https://alfajores-forno.celo-testnet.org')
-const getAccount = require('./getAccount').getAccount
+// const Kit = require('@celo/contractkit')
+// const kit = Kit.newKit('https://alfajores-forno.celo-testnet.org')
+// const getAccount = require('./getAccount').getAccount
 
-async function awaitWrapper() {
-  let account = await getAccount()
-  kit.connection.addAccount(account.privateKey)
-}
-awaitWrapper() 
+// async function awaitWrapper() {
+//   let account = await getAccount()
+//   kit.connection.addAccount(account.privateKey)
+// }
+// awaitWrapper() 
+
+require("dotenv").config({ path: ".env" });
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const provider_zkPolygon = new HDWalletProvider(
+  PRIVATE_KEY,
+  "https://methodical-misty-wish.zkevm-testnet.discover.quiknode.pro/0a93c82481209a21aee2c243179f731f92989ef5/"
+);
 
 
 module.exports = {
@@ -20,9 +28,14 @@ module.exports = {
       port: 8545,
       network_id: "*"
     },
-    alfajores: {
-      provider: kit.connection.web3.currentProvider, 
-      network_id: 44787 
+    // alfajores: {
+    //   provider: kit.connection.web3.currentProvider, 
+    //   network_id: 44787 
+    // },
+    mumbaimatic: {
+      provider: provider_zkPolygon,
+      network_id: 1442,
+      confirmations: 2,
     }
   },
 

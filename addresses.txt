@@ -1,0 +1,1 @@
+zkevm deployed: 0x6d32C65986e51b021f7f9294E48F7Beb42d794f8
