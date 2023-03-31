@@ -196,7 +196,17 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route exact path="/" render={() => <Login />} />
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Login
+                account={this.state.account}
+                certificates={this.state.certificates}
+                verifyCertificate={this.verifyCertificate}
+              />
+            )}
+          />
         </Router>
       </div>
     );
