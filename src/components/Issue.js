@@ -21,14 +21,16 @@ const WhiteTextTypography = withStyles({
   },
 })(Typography);
 
-
-const projectId = "2NbraHCOc4hGdJyuwLGQWoYpNve"
-const projectSecret = "7dfd8dd7bd2e27119f71c259862e8bd7"
-const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64')
+const projectId = process.env.REACT_APP_PROJECT_ID;
+const projectSecret = process.env.REACT_APP_PROJECT_SECRET;
+const auth =
+  "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
 
 const client = ipfsClient({
   host: "ipfs.infura.io",
+  host: "ipfs.infura.io",
   port: 5001,
+  protocol: "https",
   protocol: "https",
   headers: {
     authorization: auth,
@@ -114,11 +116,11 @@ class Issue extends Component {
       // client.pin.add(this.state.buffer).then((res) => {
       //   console.log(res);
       //   return res;
-      
+
       // .then((result)=>{
-        //this.props.issueCertificate( "https://"+result.data.value.cid+"/"+result.data.value.files[0].name,this.recepient.current.value, this.descinput.current.value)
+      //this.props.issueCertificate( "https://"+result.data.value.cid+"/"+result.data.value.files[0].name,this.recepient.current.value, this.descinput.current.value)
       // console.log(result)
-      
+
       // }
       // ).catch((err) => {
       //   console.error(err);
@@ -148,14 +150,14 @@ class Issue extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({type: event.target.value});
-  }
+    this.setState({ type: event.target.value });
+  };
 
   
 
   componentWillReceiveProps() {
     this.props.users.map((user) => {
-      if (user.userAddress == this.props.account) {
+      if (user.userAddress === this.props.account) {
         this.setState({ isUser: true });
         this.setState({ user });
       }

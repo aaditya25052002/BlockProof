@@ -32,19 +32,11 @@ export default function ButtonAppBar() {
         style={{ backgroundColor: "black", color: "white" }}
       >
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="purple"
-            aria-label="menu"
-          >
-            <i
-              class="fa-sharp fa-solid fa-link"
-              style={{ color: "purple", backgroundColor: "purple" }}
-            >
-              {" "}
-            </i>
-          </IconButton>
+          <img
+            style={{ maxWidth: "40px", marginRight: "10px" }}
+            src="polygon-matic-icon.svg"
+            alt=""
+          />
           <Typography variant="h5" className={classes.title}>
             <Link to="/">
               <div style={{ color: "white" }}>BlockProof</div>
