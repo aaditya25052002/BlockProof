@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core/";
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select'
-
+import { Buffer } from 'buffer';
 
 import ipfsClient from "ipfs-http-client";
 const WhiteTextTypography = withStyles({
@@ -37,30 +37,64 @@ const client = ipfsClient({
 
 class Issue extends Component {
 
-  onSubmit = (e) => {
+
+
+  onSubmit = async (e) => {
     e.preventDefault();
     //this part is for image upload in infura
-    if(this.state.filesSelected){
-
-      // const reader = new FileReader();
-      // if (this.fileinput.current.files[0]) reader.readAsDataURL(this.fileinput.current.files[0]);
-      // reader.onload = () => {
-      //   this.setState({buffer: this.fileinput.current.files[0]});
-      // };
-      // console.log(this.buffer);
-
-      const reader = new window.FileReader()
-      reader.readAsArrayBuffer(this.fileinput.current.files[0])
-      reader.onloadend = () => {
-        this.setState({ buffer: Buffer(reader.result) })
+    if (this.state.filesSelected) {
+      const selectedImage = this.state.image;
+      console.log(selectedImage);
+      
+      const loadFile = async () => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsArrayBuffer(selectedImage);
+          
+          reader.onload = () => {
+            console.log("chodu");
+            const arrayBuffer = reader.result;
+            const buffer = Buffer.from(arrayBuffer);
+            console.log(arrayBuffer);
+            // this.setState({ buffer: arrayBuffer }, () => {
+            //   console.log("chale che");
+            //   console.log(this.state.buffer);
+            //   resolve();
+            // });
+          };
+          
+          reader.onerror = () => {
+            reject(reader.error);
+          };
+        });
+      };
+      
+      try {
+        await loadFile();
+      } catch (error) {
+        console.error(error);
       }
-      console.log(this.buffer);
-
-      const created = client.add(this.buffer);
+    
+  
+      console.log(this.state.buffer);
+      const bufferArray = new Uint8Array(this.state.buffer)
+      const blob = new Blob([bufferArray], { type: "application/octet-stream" }); // create a new Blob object
+      const created = client.add(blob);
+      
+      console.log(created);
       console.log("image uploading..");
       const metadataURI = `https://ipfs.io/ipfs/${created.path}`;
       console.log(metadataURI);
-      this.setState({linkinput:metadataURI });
+      this.setState({ linkinput: metadataURI }, () => {
+        console.log(this.state.linkinput);
+        console.log(this.recepient.current.value);
+        console.log(this.descinput.current.value);
+        this.props.issueCertificate(
+          this.state.linkinput,
+          this.recepient.current.value,
+          this.descinput.current.value
+        );
+      });
 
       ////
       // const reader = new window.FileReader()
@@ -90,9 +124,7 @@ class Issue extends Component {
       //   console.error(err);
       // });}
     }
-    console.log(this.linkinput.current.value);
-    this.props.issueCertificate(this.linkinput.current.value, this.recepient.current.value, this.descinput.current.value) 
-
+    
   }
 
   constructor(props) {
@@ -111,6 +143,7 @@ class Issue extends Component {
       isUser: false,
       user: null,
       type: "Institution",
+      image: null,
     };
   }
 
@@ -118,14 +151,6 @@ class Issue extends Component {
     this.setState({type: event.target.value});
   }
 
-  changeImage = (event) => {
-    
-      event.preventDefault();
-      if(this.fileinput.current.files[0]){
-        this.setState({filesSelected:true})
-      }
-      console.log(this.fileinput.current.files[0]);
-      }
   
 
   componentWillReceiveProps() {
@@ -217,9 +242,13 @@ class Issue extends Component {
                         onChange={(event) => {
                           event.preventDefault();
                           if (this.fileinput.current.files[0]) {
-                            this.setState({ filesSelected: true });
-                          }
-                        }}
+                          this.setState({ filesSelected: true });
+                          console.log(this.fileinput.current.files[0]);
+                          this.setState({ image: this.fileinput.current.files[0] }, () => {
+                            console.log(this.state.image);
+                          });
+                            }}
+                        }
                       />
                     </div>
                     <br />
