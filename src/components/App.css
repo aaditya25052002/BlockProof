@@ -3,3 +3,27 @@
     top:30%;
     left:45%; 
 }
+
+.anim-gif{
+    height: 300px;
+    margin-left: 150px;
+    border-radius: 50%;
+  }
+
+@media only screen and (max-width: 600px) {
+    .anim-gif {
+     height: 110px;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    .anim-giff{
+        margin-top: 2rem;
+    }
+    .anim-gif {
+     height: 60px;
+     margin-left: 40%;
+    }
+
+    
+  }

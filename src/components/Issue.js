@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import React, { Component } from "react";
-import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -10,35 +8,18 @@ import Container from "@material-ui/core/Container";
 import { Card, CardContent, CardHeader } from "@material-ui/core/";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
-import {
-  Card,
-  CardContent,
-  CardHeader
-} from "@material-ui/core/";
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select'
-
 
 import ipfsClient from "ipfs-http-client";
 const WhiteTextTypography = withStyles({
   root: {
     color: "darkblue",
   },
-    color: "darkblue",
-  },
 })(Typography);
-
-const ipfsClient = require("ipfs-http-client");
 
 const projectId = process.env.REACT_APP_PROJECT_ID;
 const projectSecret = process.env.REACT_APP_PROJECT_SECRET;
 const auth =
   "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
-const projectId = "2NbraHCOc4hGdJyuwLGQWoYpNve"
-const projectSecret = "7dfd8dd7bd2e27119f71c259862e8bd7"
-const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64')
 
 const client = ipfsClient({
   host: "ipfs.infura.io",
@@ -50,16 +31,12 @@ const client = ipfsClient({
     authorization: auth,
   },
 });
-    authorization: auth,
-  },
-});
 
 class Issue extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     //this part is for image upload in infura
     if (this.state.filesSelected) {
-
       // const reader = new FileReader();
       // if (this.fileinput.current.files[0]) reader.readAsDataURL(this.fileinput.current.files[0]);
       // reader.onload = () => {
@@ -70,15 +47,15 @@ class Issue extends Component {
       const reader = new window.FileReader();
       reader.readAsArrayBuffer(this.fileinput.current.files[0]);
       reader.onloadend = () => {
-        this.setState({ buffer: Buffer(reader.result) })
-      }
+        this.setState({ buffer: Buffer(reader.result) });
+      };
       console.log(this.buffer);
 
       const created = client.add(this.buffer);
       console.log("image uploading..");
       const metadataURI = `https://ipfs.io/ipfs/${created.path}`;
       console.log(metadataURI);
-      this.setState({linkinput:metadataURI });
+      this.setState({ linkinput: metadataURI });
 
       ////
       // const reader = new window.FileReader()
@@ -98,20 +75,23 @@ class Issue extends Component {
       // client.pin.add(this.state.buffer).then((res) => {
       //   console.log(res);
       //   return res;
-      
+
       // .then((result)=>{
-        //this.props.issueCertificate( "https://"+result.data.value.cid+"/"+result.data.value.files[0].name,this.recepient.current.value, this.descinput.current.value)
+      //this.props.issueCertificate( "https://"+result.data.value.cid+"/"+result.data.value.files[0].name,this.recepient.current.value, this.descinput.current.value)
       // console.log(result)
-      
+
       // }
       // ).catch((err) => {
       //   console.error(err);
       // });}
     }
     console.log(this.linkinput.current.value);
-    this.props.issueCertificate(this.linkinput.current.value, this.recepient.current.value, this.descinput.current.value) 
-
-  }
+    this.props.issueCertificate(
+      this.linkinput.current.value,
+      this.recepient.current.value,
+      this.descinput.current.value
+    );
+  };
 
   constructor(props) {
     super(props);
@@ -133,22 +113,20 @@ class Issue extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({type: event.target.value});
-  }
+    this.setState({ type: event.target.value });
+  };
 
   changeImage = (event) => {
-    
-      event.preventDefault();
-      if(this.fileinput.current.files[0]){
-        this.setState({filesSelected:true})
-      }
-      console.log(this.fileinput.current.files[0]);
-      }
-  
+    event.preventDefault();
+    if (this.fileinput.current.files[0]) {
+      this.setState({ filesSelected: true });
+    }
+    console.log(this.fileinput.current.files[0]);
+  };
 
   componentWillReceiveProps() {
     this.props.users.map((user) => {
-      if (user.userAddress == this.props.account) {
+      if (user.userAddress === this.props.account) {
         this.setState({ isUser: true });
         this.setState({ user });
       }

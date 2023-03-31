@@ -9,6 +9,7 @@ import Issue from "./Issue";
 import Certificate from "./Certificate";
 import Navbar from "./Navbar";
 import Login from "./Login";
+import Footer from "./Footer";
 
 class App extends Component {
   async componentWillMount() {
@@ -207,6 +208,7 @@ class App extends Component {
               />
             )}
           />
+          <Footer />
         </Router>
       </div>
     );
