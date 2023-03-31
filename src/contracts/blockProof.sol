@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.5.0;
 
-contract Dvault {
+contract blockProof {
     uint public uCount;
     uint public cCount;
     mapping(uint => User) public users;

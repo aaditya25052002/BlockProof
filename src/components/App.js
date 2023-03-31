@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Web3 from "web3";
-import Dvault from "../abis/Dvault.json";
+import Dvault from "../abis/blockProof.json";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { HalfCircleSpinner } from "react-epic-spinners";
@@ -17,13 +17,13 @@ class App extends Component {
   }
 
   async loadWeb3() {
-    if (window.celo) {
-      await window.celo.enable();
-      window.web3 = new Web3(window.celo);
+    if (window.eth) {
+      await window.eth.enable();
+      window.web3 = new Web3(window.eth);
     } else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
     } else {
-      window.alert("Use the Celo Extension Wallet!");
+      window.alert("Use the Metamask Extension Wallet!");
     }
   }
 
