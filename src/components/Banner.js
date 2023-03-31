@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./App.css";
 const Banner = () => {
   return (
     <>
@@ -12,8 +13,8 @@ const Banner = () => {
         <div className="container-fluid nav_bg">
           <div className="row">
             <div className="col-10 mx-auto">
-              <div className="row">
-                <div className="col-md-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center animate__animated animate__fadeInLeft">
+              <div className="row banner-div">
+                <div className="col-md-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center animate__animated animate__fadeInLeft anim-para">
                   {/* //Your dream websites and instant apps awaits ! */}
                   <h2>Why Blockchain, why us?</h2>
                   <h9>
@@ -47,13 +48,8 @@ const Banner = () => {
                   <img
                     src="https://i.gifer.com/7sYl.gif"
                     // src="https://i.gifer.com/1j64.gif"
-                    className="img-fluid-animated"
                     alt="homeimg"
-                    style={{
-                      height: "300px",
-                      marginLeft: "150px",
-                      borderRadius: "50%",
-                    }}
+                    className="img-fluid-animated anim-gif"
                   />
                 </div>
               </div>
@@ -97,13 +93,8 @@ const Banner = () => {
                   <img
                     // src="https://i.gifer.com/7sYl.gif"
                     src="https://i.gifer.com/1j64.gif"
-                    className="img-fluid-animated"
+                    className="img-fluid-animated anim-gif anim-giff"
                     alt="homeimg"
-                    style={{
-                      height: "300px",
-                      marginRight: "150px",
-                      borderRadius: "50%",
-                    }}
                   />
                 </div>
               </div>

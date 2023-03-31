@@ -9,6 +9,7 @@ import Issue from "./Issue";
 import Certificate from "./Certificate";
 import Navbar from "./Navbar";
 import Login from "./Login";
+import Footer from "./Footer";
 
 class App extends Component {
   async componentWillMount() {
@@ -18,14 +19,12 @@ class App extends Component {
 
   async loadWeb3() {
     if (window.eth) {
-      await window.eth.enable()
-      window.web3 = new Web3(window.eth)
-    }
-    else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider)
-    }
-    else {
-      window.alert('Use the Metamask Extension Wallet!')
+      await window.eth.enable();
+      window.web3 = new Web3(window.eth);
+    } else if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider);
+    } else {
+      window.alert("Use the Metamask Extension Wallet!");
     }
   }
 
@@ -198,7 +197,18 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route exact path="/" render={() => <Login />} />
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Login
+                account={this.state.account}
+                certificates={this.state.certificates}
+                verifyCertificate={this.verifyCertificate}
+              />
+            )}
+          />
+          <Footer />
         </Router>
       </div>
     );
