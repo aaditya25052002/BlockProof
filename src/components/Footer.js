@@ -7,7 +7,8 @@ export default function Footer() {
   return (
     <footer
       style={{
-        bottom: 0,
+        position: "absolute",
+        width: "100%",
         background: "black",
         justifyContent: "center",
         textAlign: "center",

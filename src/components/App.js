@@ -31,9 +31,11 @@ class App extends Component {
   async loadBlockchainData() {
     const web3 = window.web3;
     const accounts = await web3.eth.getAccounts();
-    this.setState({ account: accounts[0] });
+    const account = accounts[0];
+    this.setState({ account: account });
     const networkId = await web3.eth.net.getId();
     const networkData = Dvault.networks[networkId];
+    console.log(account);
 
     if (networkData) {
       const dvault = new web3.eth.Contract(Dvault.abi, networkData.address);

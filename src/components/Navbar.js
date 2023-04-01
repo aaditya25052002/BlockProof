@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import Web3 from "web3";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -22,9 +22,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar() {
   const [address, setAddress] = useState("0x");
-
   const classes = useStyles();
   const Link = require("react-router-dom").Link;
+
+  useEffect(async () => {
+    if (window.eth) {
+      await window.eth.enable();
+      window.web3 = new Web3(window.eth);
+    } else if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider);
+    } else {
+      window.alert("Use the Metamask Extension Wallet!");
+    }
+    const web3 = window.web3;
+    const accounts = await web3.eth.getAccounts();
+    const account = accounts[0];
+    setAddress(account.toString());
+  }, []);
+
   return (
     <div className={classes.root}>
       <AppBar

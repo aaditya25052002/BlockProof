@@ -16,7 +16,7 @@ const Banner = () => {
               <div className="row banner-div">
                 <div className="col-md-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center animate__animated animate__fadeInLeft anim-para">
                   {/* //Your dream websites and instant apps awaits ! */}
-                  <h2>Why Blockchain, why us?</h2>
+                  <h2>Generating Certificates on Blockchain</h2>
                   <h9>
                     Blockchain technology has revolutionized the way we verify
                     and create certificates. Its unique features make it an
@@ -24,14 +24,6 @@ const Banner = () => {
                     blockchain is its immutability. Once information is added to
                     the blockchain, it cannot be altered or deleted, ensuring
                     the integrity of the information contained in certificates.
-                    Additionally, blockchain is a decentralized system, meaning
-                    that there is no central authority controlling it, making
-                    certificates more reliable and trustworthy. The transparency
-                    and security features of blockchain also make it an
-                    attractive option for certificate verification. All
-                    participants in the network can see the transactions and
-                    certificates that have been added to the ledger, ensuring
-                    their authenticity.
                   </h9>
                   <div className="mt-3">
                     <Link to="/issue">
